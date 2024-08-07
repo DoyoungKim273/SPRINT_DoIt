@@ -9,7 +9,8 @@ function App() {
     <BrowserRouter>
     <div>
       <Routes>
-        <Route path="/" element={<Homepage/>}/>
+        <Route path="/" element={<Homepage/>}/> 
+        {/* check */}
       </Routes>
     </div>
     </BrowserRouter>
