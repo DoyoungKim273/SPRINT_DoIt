@@ -5,31 +5,33 @@ import { postItemAll } from "../service/ApiService";
 import search from "../image/img/search.png";
 import AddLargeActive from "../image/btn/AddLargeActive.png";
 
-const Input: React.FC = () => {
-  const [inputItems, setInputItems] = useState<string>("");
+  const Input: React.FC = () => {
+    // 상태 변수 선언 후 초기값 빈 문자열 설정
+    const [inputItems, setInputItems] = useState<string>("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputItems(event.target.value);
-  };
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputItems(event.target.value);
+    };
 
-  const handleInputItems = async () => {
-    console.log("handleInputItems 올바르게 작동중")
-    if (inputItems.trim() === "") {
-      alert("할 일을 입력해주세요");
-      return;
-    }
-    try {
-      const newItem = {
-        name: inputItems,
-      };
-      console.log(newItem);
-      alert(newItem);
-      await postItemAll(newItem);
-      setInputItems("");
-    } catch (error) {
-      console.error("inputItems 실행 중 에러 발생", error);
-    }
-  };
+    // 추가하기 클릭 시 작동하는 아이템 추가 함수
+    const handleInputItems = async () => {
+      console.log("handleInputItems 올바르게 작동중")
+      if (inputItems.trim() === "") {
+        alert("할 일을 입력해주세요");
+        return;
+      }
+      try {
+        // 새로운 아이템 객체 생성
+        const newItem = {
+          name: inputItems,
+        };
+        console.log(newItem);
+        await postItemAll(newItem);
+        setInputItems("");
+      } catch (error) {
+        console.error("inputItems 실행 중 에러 발생", error);
+      }
+    };
 
   return (
     <>
@@ -64,7 +66,7 @@ const Input: React.FC = () => {
       <input
         type="text"
         placeholder="할 일을 입력해주세요"
-        value={inputItems} // 입력 필드에 상태값을 바인딩
+        value={inputItems}
         onChange={handleInputChange} // 입력 필드 값 변경 시 handleInputChange 함수 호출
         style={{
           // 이미지 위에 input 창을 투명하게 띄움

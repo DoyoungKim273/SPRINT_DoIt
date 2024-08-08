@@ -10,7 +10,7 @@ export interface ItemsAll {
   name: string;
 }
 
-export interface ItemsMain {
+export interface ItemMain {
   name: string;
 }
 
@@ -26,13 +26,14 @@ export const getItemsAll = async (): Promise<ItemsAll[]> => {
   }
 };
 
-export const postItemAll = async (item: ItemsMain): Promise<ItemsMain> => {
+// 메인 화면에서의 아이템 포스트 함수 정의 
+export const postItemAll = async (item: ItemMain): Promise<ItemMain> => {
   try {
-    const response = await axios.post<ItemsMain>(`${API_BASE_URL}/items`, item);
+    const response = await axios.post<ItemMain>(`${API_BASE_URL}/items`, item);
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error("createItem 함수 실행 중 에러 발생.", error);
+    console.error("postItemAll 함수 실행 중 에러 발생.", error);
     throw error;
   }
 };

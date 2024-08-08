@@ -28,6 +28,7 @@ const Todo: React.FC = () => {
 
   return (
     <>
+    {/* 화면 상단 제목 2개 */}
       <img
         src={todo}
         alt="todo"
@@ -52,6 +53,7 @@ const Todo: React.FC = () => {
           left: "972px",
         }}
       />
+      {/* 완료 전 리스트 */}
       <div
         style={{
           position: "absolute",
@@ -60,12 +62,12 @@ const Todo: React.FC = () => {
           top: "232px",
           left: "360px",
           display: "flex",
-          flexDirection: "column", // 자식 요소를 세로로 정렬
-          gap: "16px", // 각 아이템 간격
+          flexDirection: "column", 
+          gap: "16px", 
         }}
       >
         {itemsAll
-          .filter((item) => item.isCompleted)
+          .filter((item) => !item.isCompleted)
           .map((item) => (
             <div
               key={item.id}
@@ -73,7 +75,7 @@ const Todo: React.FC = () => {
                 width: "588px",
                 height: "50px",
                 display: "flex",
-                alignItems: "center", // 수직 중앙 정렬
+                alignItems: "center", 
                 gap: "10px",
                 borderRadius: "27px 27px 27px 27px",
                 border: "2px solid #0F172A",
@@ -85,7 +87,7 @@ const Todo: React.FC = () => {
                   width: "",
                   height: "32px",
                   display: "flex",
-                  alignItems: "center", // 수직 중앙 정렬
+                  alignItems: "center", 
                   gap: "16px",
                 }}
               >
@@ -115,6 +117,7 @@ const Todo: React.FC = () => {
             </div>
           ))}
       </div>
+      {/* 완료된 리스트 */}
       <div
         style={{
           position: "absolute",
@@ -123,12 +126,12 @@ const Todo: React.FC = () => {
           top: "230px",
           left: "972px",
           display: "flex",
-          flexDirection: "column", // 자식 요소를 세로로 정렬
-          gap: "16px", // 각 아이템 간격
+          flexDirection: "column", 
+          gap: "16px", 
         }}
       >
         {itemsAll
-          .filter((item) => !item.isCompleted)
+          .filter((item) => item.isCompleted)
           .map((item) => (
             <div
               key={item.id}
@@ -136,7 +139,7 @@ const Todo: React.FC = () => {
                 width: "588px",
                 height: "50px",
                 display: "flex",
-                alignItems: "center", // 수직 중앙 정렬
+                alignItems: "center", 
                 gap: "10px",
                 borderRadius: "27px 27px 27px 27px",
                 border: "2px solid #0F172A",
@@ -148,7 +151,7 @@ const Todo: React.FC = () => {
                   width: "",
                   height: "32px",
                   display: "flex",
-                  alignItems: "center", // 수직 중앙 정렬
+                  alignItems: "center", 
                   gap: "16px",
                 }}
               >
