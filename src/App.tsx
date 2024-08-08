@@ -10,7 +10,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Homepage/>}/> 
-        {/* check2 */}
       </Routes>
     </div>
     </BrowserRouter>
