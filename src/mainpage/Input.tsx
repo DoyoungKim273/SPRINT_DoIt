@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { postItemAll } from "../service/ApiService";
 
 import search from "../image/img/search.png";
 import AddLargeActive from "../image/btn/AddLargeActive.png";
 
-  const Input: React.FC = () => {
+  interface InputProps {
+    fetchNewItem: () => Promise<void>;
+  }
+
+  const Input: React.FC<InputProps> = ({fetchNewItem})=> {
     // 상태 변수 선언 후 초기값 빈 문자열 설정
     const [inputItems, setInputItems] = useState<string>("");
 
@@ -13,7 +17,7 @@ import AddLargeActive from "../image/btn/AddLargeActive.png";
       setInputItems(event.target.value);
     };
 
-    // 추가하기 클릭 시 작동하는 아이템 추가 함수
+    // 새로운 아이템을 추가하고, 추가 버튼을 누른 후 즉시 반영하는 함수 (초기 버전에서 수정)
     const handleInputItems = async () => {
       console.log("handleInputItems 올바르게 작동중")
       if (inputItems.trim() === "") {
@@ -26,8 +30,13 @@ import AddLargeActive from "../image/btn/AddLargeActive.png";
           name: inputItems,
         };
         console.log(newItem);
+
+        // 새로운 아이템 서버에 전송
         await postItemAll(newItem);
+
+        // 입력 필드 초기화
         setInputItems("");
+
       } catch (error) {
         console.error("inputItems 실행 중 에러 발생", error);
       }
@@ -52,7 +61,8 @@ import AddLargeActive from "../image/btn/AddLargeActive.png";
       <img
         src={AddLargeActive}
         alt="AddLargeActive"
-        onClick={handleInputItems} // "추가하기" 버튼 클릭 시 handleInputItems 함수 호출
+        // "추가하기" 버튼 클릭 시 handleInputItems 함수 호출
+        onClick={handleInputItems} 
         style={{
           width: "168px",
           height: "56px",
@@ -67,7 +77,8 @@ import AddLargeActive from "../image/btn/AddLargeActive.png";
         type="text"
         placeholder="할 일을 입력해주세요"
         value={inputItems}
-        onChange={handleInputChange} // 입력 필드 값 변경 시 handleInputChange 함수 호출
+        // 입력 필드 값 변경 시 handleInputChange 함수 호출
+        onChange={handleInputChange} 
         style={{
           // 이미지 위에 input 창을 투명하게 띄움
           position: "absolute",

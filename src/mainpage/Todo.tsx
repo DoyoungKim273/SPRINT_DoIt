@@ -6,29 +6,16 @@ import todo from "../image/img/todo.png";
 import Ellipse from "../image/ic/Ellipse.png";
 import checkbox from "../image/ic/checkbox.png";
 
-const Todo: React.FC = () => {
-  // 상태변수 추가하여 API에서 가져온 데이터 저장
-  const [itemsAll, setItemsAll] = useState<ItemsAll[]>([]);
+interface TodoProps {
+  itemsAll: ItemsAll[];
+}
 
-  // 컴포넌트가 마운트 될 때 fetch ~ 함수 호출하여 데이터 가져옴
-  useEffect(() => {
-    const fetchItemsAll = async () => {
-      try {
-        const data = await getItemsAll();
-        // itemsAll에 데이터 저장
-        setItemsAll(data);
-        console.log(data);
-      } catch (error) {
-        console.error("fetchItems 실행 중 에러 발생", error);
-      }
-    };
-
-    fetchItemsAll();
-  }, []);
+const Todo: React.FC<TodoProps> = ({ itemsAll }) => {
+  console.log("todo 컴포넌트가 itemsAll을 제대로 렌더링 하고 있음", itemsAll);
 
   return (
     <>
-    {/* 화면 상단 제목 2개 */}
+      {/* 화면 상단 제목 2개 */}
       <img
         src={todo}
         alt="todo"
@@ -62,8 +49,8 @@ const Todo: React.FC = () => {
           top: "232px",
           left: "360px",
           display: "flex",
-          flexDirection: "column", 
-          gap: "16px", 
+          flexDirection: "column",
+          gap: "16px",
         }}
       >
         {itemsAll
@@ -75,7 +62,7 @@ const Todo: React.FC = () => {
                 width: "588px",
                 height: "50px",
                 display: "flex",
-                alignItems: "center", 
+                alignItems: "center",
                 gap: "10px",
                 borderRadius: "27px 27px 27px 27px",
                 border: "2px solid #0F172A",
@@ -87,7 +74,7 @@ const Todo: React.FC = () => {
                   width: "",
                   height: "32px",
                   display: "flex",
-                  alignItems: "center", 
+                  alignItems: "center",
                   gap: "16px",
                 }}
               >
@@ -126,8 +113,8 @@ const Todo: React.FC = () => {
           top: "230px",
           left: "972px",
           display: "flex",
-          flexDirection: "column", 
-          gap: "16px", 
+          flexDirection: "column",
+          gap: "16px",
         }}
       >
         {itemsAll
@@ -139,7 +126,7 @@ const Todo: React.FC = () => {
                 width: "588px",
                 height: "50px",
                 display: "flex",
-                alignItems: "center", 
+                alignItems: "center",
                 gap: "10px",
                 borderRadius: "27px 27px 27px 27px",
                 border: "2px solid #0F172A",
@@ -151,7 +138,7 @@ const Todo: React.FC = () => {
                   width: "",
                   height: "32px",
                   display: "flex",
-                  alignItems: "center", 
+                  alignItems: "center",
                   gap: "16px",
                 }}
               >
